@@ -46,3 +46,5 @@ end
 
 # Markio for Netscape HTML bookmarks file format
 gem 'markio'
+
+gem 'rack-webconsole' #, :git => 'git://github.com/codegram/rack-webconsole.git'
