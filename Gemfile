@@ -43,3 +43,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Markio for Netscape HTML bookmarks file format
+gem 'markio'
