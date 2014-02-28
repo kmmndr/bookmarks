@@ -1,4 +1,6 @@
 Bookmarks::Application.routes.draw do
+  root 'bookmarks#index'
+
   resources :bookmarks
 
   resources :folders
