@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  href: MyString
+  visited_at: 2014-02-28 13:22:55
+
+two:
+  title: MyString
+  href: MyString
+  visited_at: 2014-02-28 13:22:55
