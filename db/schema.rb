@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228122255) do
+ActiveRecord::Schema.define(version: 20140228123312) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 20140228122255) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_folder_id"
   end
+
+  add_index "folders", ["parent_folder_id"], name: "index_folders_on_parent_folder_id"
 
 end
