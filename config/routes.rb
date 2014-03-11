@@ -1,7 +1,11 @@
 Bookmarks::Application.routes.draw do
   root 'bookmarks#index'
 
-  resources :bookmarks
+  resources :bookmarks do
+    member do
+      get :goto
+    end
+  end
 
   resources :folders
 
