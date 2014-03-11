@@ -27,7 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem "slim-rails"
+gem "slim-rails" # using 'html2slim' to convert existing views
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,6 +45,10 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# to check webpage validity
+gem 'mechanize'
+gem 'pry'
 
 # Markio for Netscape HTML bookmarks file format
 gem 'markio'

@@ -1,0 +1,27 @@
+h1
+  | Listing bookmarks
+table
+  thead
+    tr
+      th
+        | Title
+      th
+        | Visited at
+      th
+      th
+      th
+  tbody
+    - @bookmarks.each do |bookmark|
+      tr
+        td
+          = render bookmark
+        td
+          = bookmark.visited_at
+        td
+          = link_to 'Show', bookmark
+        td
+          = link_to 'Edit', edit_bookmark_path(bookmark)
+        td
+          = link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Bookmark', new_bookmark_path
