@@ -1,5 +1,5 @@
 Bookmarks::Application.routes.draw do
-  root 'bookmarks#index'
+  root 'folders#index'
 
   resources :bookmarks do
     member do
