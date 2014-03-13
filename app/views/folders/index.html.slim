@@ -1,4 +1,4 @@
-= render(@parent_folder.parent_folder) unless @parent_folder.try(:parent_folder).nil?
+= render(@parent_folder) unless @parent_folder.nil?
 ul
   - @folders.each do |folder|
     li

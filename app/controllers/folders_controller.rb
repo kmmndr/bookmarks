@@ -4,10 +4,11 @@ class FoldersController < ApplicationController
   # GET /folders/browse/:path
   def browse
     path = params[:path]
-    @parent_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
+    @current_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
+    @parent_folder = @current_folder.try(:parent_folder)
 
-    @folders = Folder.with_parent(@parent_folder).ordered_by_name
-    @bookmarks = @parent_folder.try(:bookmarks).try(:ordered_by_title) || []
+    @folders = Folder.with_parent(@current_folder).ordered_by_name
+    @bookmarks = @current_folder.try(:bookmarks).try(:ordered_by_title) || []
 
     respond_to do |format|
       format.html { render action: 'index' }
@@ -18,10 +19,10 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     parent = params[:parent]
-    @parent_folder = Folder.find(parent) unless parent.nil?
+    @current_folder = Folder.find(parent) unless parent.nil?
 
-    @folders = Folder.with_parent(@parent_folder)
-    @bookmarks = @parent_folder.try(:bookmarks) || []
+    @folders = Folder.with_parent(@current_folder)
+    @bookmarks = @current_folder.try(:bookmarks) || []
 
     respond_to do |format|
       format.html
