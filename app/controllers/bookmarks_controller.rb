@@ -1,9 +1,19 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :goto]
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :update_title, :goto]
+
+  # GET /bookmarks/1/update_title
+  def update_title
+    @bookmark.update_title
+
+    respond_to do |format|
+      format.js { render false }
+      format.html { redirect_to @bookmark }
+    end
+  end
 
   # GET /bookmarks/1/goto
   def goto
-    @bookmark.update_title
+    #@bookmark.update_title
 
     respond_to do |format|
       format.html { redirect_to @bookmark.href }

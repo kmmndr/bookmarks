@@ -4,6 +4,10 @@ p
   strong
     | Title:
   = @bookmark.title
+  |  
+  = link_to 'update', update_title_bookmark_path(@bookmark), remote: true
+  |  
+  = link_to 'goto', goto_bookmark_path(@bookmark)
 p
   strong
     | Href:

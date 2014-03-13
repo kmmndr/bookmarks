@@ -3,6 +3,7 @@ Bookmarks::Application.routes.draw do
 
   resources :bookmarks do
     member do
+      get :update_title
       get :goto
     end
   end
