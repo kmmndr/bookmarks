@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+  //disable Click event for links, replace with 'goto' link
+  $("a[data-goto]").click( function(e) {
+    var goto_url = $(this).attr('data-goto');
+    $(this).target = "_blank";
+    window.open(goto_url);
+    return false;
+  });
+});
