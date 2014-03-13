@@ -6,8 +6,8 @@ class FoldersController < ApplicationController
     path = params[:path]
     @parent_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
 
-    @folders = Folder.with_parent(@parent_folder)
-    @bookmarks = @parent_folder.try(:bookmarks) || []
+    @folders = Folder.with_parent(@parent_folder).ordered_by_name
+    @bookmarks = @parent_folder.try(:bookmarks).try(:ordered_by_title) || []
 
     respond_to do |format|
       format.html { render action: 'index' }

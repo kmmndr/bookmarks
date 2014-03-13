@@ -5,6 +5,7 @@ class Folder < ActiveRecord::Base
 
   scope :first_level, lambda { with_parent(nil) }
   scope :with_parent, lambda { |parent| where(parent_folder_id: parent.try(:id)) }
+  scope :ordered_by_name, lambda { order(name: :asc) }
 
   def ancestors
     parent_folder.nil? ? [name] : parent_folder.ancestors.dup.insert(-1, name)
@@ -13,6 +14,7 @@ class Folder < ActiveRecord::Base
   def full_path(char = '/')
     ancestors.join(char)
   end
+
 
   def self.create_hierarchy(folders, parent = nil, options = {})
     remaining_folders = folders.dup

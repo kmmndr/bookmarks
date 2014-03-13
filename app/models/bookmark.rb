@@ -6,6 +6,8 @@ class Bookmark < ActiveRecord::Base
     last = Folder.create_hierarchy(folders)
     where(folder_id: last.try(:id))
   }
+  scope :ordered_by_title, lambda { order(updated_at: :asc) }
+
 
   def auto_title
     title || href
