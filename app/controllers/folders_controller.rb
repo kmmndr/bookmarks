@@ -1,10 +1,31 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
 
+  # GET /folders/browse/:path
+  def browse
+    path = params[:path]
+    @parent_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
+
+    @folders = Folder.with_parent(@parent_folder)
+    @bookmarks = @parent_folder.try(:bookmarks) || []
+
+    respond_to do |format|
+      format.html { render action: 'index' }
+    end
+  end
+
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    parent = params[:parent]
+    @parent_folder = Folder.find(parent) unless parent.nil?
+
+    @folders = Folder.with_parent(@parent_folder)
+    @bookmarks = @parent_folder.try(:bookmarks) || []
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   # GET /folders/1

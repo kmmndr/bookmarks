@@ -1,23 +1,9 @@
-h1
-  | Listing folders
-table
-  thead
-    tr
-      th
-        | Name
-      th
-      th
-      th
-  tbody
-    - @folders.each do |folder|
-      tr
-        td
-          = folder.name
-        td
-          = link_to 'Show', folder
-        td
-          = link_to 'Edit', edit_folder_path(folder)
-        td
-          = link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' }
-br
-= link_to 'New Folder', new_folder_path
+= render(@parent_folder.parent_folder) unless @parent_folder.try(:parent_folder).nil?
+ul
+  - @folders.each do |folder|
+    li
+      = render(folder)
+ul
+  - @bookmarks.each do |bookmark|
+    li
+      = render(bookmark)

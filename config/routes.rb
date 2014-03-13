@@ -7,7 +7,11 @@ Bookmarks::Application.routes.draw do
     end
   end
 
-  resources :folders
+  resources :folders do
+    collection do
+      get 'browse(/*path)' => 'folders#browse', as: :browse
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

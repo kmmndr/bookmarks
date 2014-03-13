@@ -1,6 +1,12 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :folder
 
+  scope :by_folder, lambda { |folder| where(folder_id: folder.try(:id)) }
+  scope :by_folders, lambda { |folders|
+    last = Folder.create_hierarchy(folders)
+    where(folder_id: last.try(:id))
+  }
+
   def auto_title
     title || href
   end
