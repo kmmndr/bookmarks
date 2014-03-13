@@ -53,4 +53,7 @@ gem 'pry'
 # Markio for Netscape HTML bookmarks file format
 gem 'markio'
 
+# database id reset
+gem 'activerecord-reset-pk-sequence'
+
 gem 'rack-webconsole' #, :git => 'git://github.com/codegram/rack-webconsole.git'
