@@ -1,0 +1,8 @@
+h1 Statistics
+= @bookmarks_count
+|  bookmarks
+
+h1 Upload
+= form_tag upload_bookmarks_path, id: "basic"
+  div
+    = file_field_tag "files[]", multiple: true

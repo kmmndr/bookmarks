@@ -3,6 +3,7 @@ Bookmarks::Application.routes.draw do
 
   resources :bookmarks do
     collection do
+      get :admin
       post :upload
     end
 

@@ -1,6 +1,10 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :update_title, :goto]
 
+  def admin
+    @bookmarks_count = Bookmark.count
+  end
+
   def upload
     files = params[:files] || []
 

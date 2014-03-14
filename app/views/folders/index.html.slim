@@ -1,8 +1,3 @@
-= form_tag upload_bookmarks_path, id: "basic"
-  div
-    = file_field_tag "files[]", multiple: true
-
-= render(@parent_folder) unless @parent_folder.nil?
 ul
   - @folders.each do |folder|
     li
