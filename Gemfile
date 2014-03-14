@@ -58,5 +58,7 @@ gem 'mechanize'
 # Markio for Netscape HTML bookmarks file format
 gem 'markio'
 
+gem 'jquery.fileupload-rails'
+
 # database id reset
 gem 'activerecord-reset-pk-sequence'

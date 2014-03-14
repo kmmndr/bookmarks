@@ -1,6 +1,16 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :update_title, :goto]
 
+  def upload
+    files = params[:files] || []
+
+    files.each do |file|
+      logger.debug file
+      Bookmarks::IO.import(file.tempfile)
+    end
+    render layout: false, content_type: "text/html"
+  end
+
   # GET /bookmarks/1/update_title
   def update_title
     @bookmark.update_title

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.fileupload
 //= require_tree .
 
 $(document).ready(function () {
@@ -22,5 +23,12 @@ $(document).ready(function () {
     $(this).target = "_blank";
     window.open(goto_url);
     return false;
+  });
+
+  $('#basic').fileupload({
+    done: function(e, data) {
+      console.log("Done", data.result);
+      return $("body").append(data.result);
+    }
   });
 });

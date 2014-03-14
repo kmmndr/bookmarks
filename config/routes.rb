@@ -2,6 +2,10 @@ Bookmarks::Application.routes.draw do
   root 'folders#index'
 
   resources :bookmarks do
+    collection do
+      post :upload
+    end
+
     member do
       get :update_title
       get :goto
