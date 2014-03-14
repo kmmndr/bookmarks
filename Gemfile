@@ -40,20 +40,23 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development do
+  # Use Capistrano for deployment
+  # gem 'capistrano', group: :development
+
+  gem 'rack-webconsole' #, :git => 'git://github.com/codegram/rack-webconsole.git'
+  gem 'pry'
+end
+
 # to check webpage validity
 gem 'mechanize'
-gem 'pry'
 
 # Markio for Netscape HTML bookmarks file format
 gem 'markio'
 
 # database id reset
 gem 'activerecord-reset-pk-sequence'
-
-gem 'rack-webconsole' #, :git => 'git://github.com/codegram/rack-webconsole.git'
