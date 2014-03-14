@@ -60,5 +60,7 @@ gem 'markio'
 
 gem 'jquery.fileupload-rails'
 
+gem 'ramenu'
+
 # database id reset
 gem 'activerecord-reset-pk-sequence'

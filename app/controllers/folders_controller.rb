@@ -5,7 +5,11 @@ class FoldersController < ApplicationController
   def browse
     path = params[:path]
     @current_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
-    @parent_folder = @current_folder.try(:parent_folder)
+    arbo = []
+    @current_folder.ancestors.each do |level|
+      arbo << level
+      add_menu level, browse_folders_path(arbo.join(File::SEPARATOR))
+    end
 
     @folders = Folder.with_parent(@current_folder).ordered_by_name
     @bookmarks = @current_folder.try(:bookmarks).try(:ordered_by_title) || []

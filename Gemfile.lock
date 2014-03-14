@@ -107,6 +107,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.1)
+    ramenu (3.0.1)
+      rails (>= 3.0)
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
@@ -173,6 +175,7 @@ DEPENDENCIES
   pry
   rack-webconsole
   rails (= 4.0.0)
+  ramenu
   sass-rails (~> 4.0.0)
   sdoc
   slim-rails
