@@ -8,5 +8,7 @@ html
     = csrf_meta_tags
   body
     div
+      = link_to current_user.name, signout_path unless current_user.nil?
+    div
       = render_ramenu
     = yield

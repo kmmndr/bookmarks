@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :update_title, :goto]
+  before_filter :authenticate
 
   def admin
     @bookmarks_count = Bookmark.count

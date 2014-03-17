@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Provider:
+  = @user.provider
+p
+  strong Uid:
+  = @user.uid
+p
+  strong Name:
+  = @user.name
+p
+  strong Oauth token:
+  = @user.oauth_token
+p
+  strong Oauth expires at:
+  = @user.oauth_expires_at
+
+= link_to 'Edit', edit_user_path(@user)
+'|
+= link_to 'Back', users_path
