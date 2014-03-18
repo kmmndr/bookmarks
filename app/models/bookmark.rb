@@ -1,5 +1,6 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :folder
+  belongs_to :user
 
   scope :by_folder, lambda { |folder| where(folder_id: folder.try(:id)) }
   scope :by_folders, lambda { |folders|
@@ -7,6 +8,8 @@ class Bookmark < ActiveRecord::Base
     where(folder_id: last.try(:id))
   }
   scope :ordered_by_title, lambda { order(updated_at: :asc) }
+  scope :owned_by_someone, lambda { where.not(user_id: nil) }
+  scope :by_user, lambda { |user| where(user_id: user.try(:id)) }
 
 
   def auto_title

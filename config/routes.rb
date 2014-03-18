@@ -1,7 +1,7 @@
 Bookmarks::Application.routes.draw do
   resources :users
 
-  root 'folders#index'
+  root 'folders#browse'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

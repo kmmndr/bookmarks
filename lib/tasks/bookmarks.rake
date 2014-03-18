@@ -10,10 +10,10 @@ namespace :bookmarks do
   task :empty => :environment
 
   desc "Import bookmarks from file"
-  task :import, [:filename] do |t, args|
-    args.with_defaults(:filename => nil)
+  task :import, [:filename, :user_id] do |t, args|
+    args.with_defaults(filename: nil, user_id: nil)
 
-    Bookmarks::IO.import(args.filename)
+    Bookmarks::IO.import(args.filename, args.user_id)
   end
   task :import => :environment
 

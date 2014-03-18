@@ -1,23 +1,25 @@
 module Bookmarks
   module IO
 
-    def self.import(filename)
+    def self.import(filename, user_id)
       bookmarks = Markio::parse(File.open(filename))
+      user = User.find(user_id) unless user_id.nil?
 
-      ActiveRecord::Base.transaction do
+      #ActiveRecord::Base.transaction do
         bookmarks.each_with_index do |b, idx|
-          last = Folder.create_hierarchy!(b.folders)
+          last = Folder.create_hierarchy!(b.folders, nil, user: user)
           puts "Importing #{idx + 1}/#{bookmarks.count}"
           Bookmark.create(
             title: b.title,
             href: b.href,
             folder: last,
+            user: user,
             visited_at: b.last_visit,
             updated_at: b.last_modified,
             created_at: b.add_date
           )
         end
-      end
+      #end
 
       bookmarks.count
     end

@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
 
     files.each do |file|
       logger.debug file
-      Bookmarks::IO.import(file.tempfile)
+      Bookmarks::IO.import(file.tempfile, current_user.try(:id))
     end
     render layout: false, content_type: "text/html"
   end
