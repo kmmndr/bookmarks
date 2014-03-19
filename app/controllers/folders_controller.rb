@@ -5,14 +5,14 @@ class FoldersController < ApplicationController
   # GET /folders/browse/:path
   def browse
     path = params[:path]
-    @current_folder = Folder.create_hierarchy(path.split(File::SEPARATOR)) unless path.nil?
+    @current_folder = Folder.by_user(current_user).create_hierarchy(path.try(:split,File::SEPARATOR))
     arbo = []
     @current_folder.ancestors.each do |level|
       arbo << level
       add_menu level, browse_folders_path(arbo.join(File::SEPARATOR))
     end
 
-    @folders = Folder.with_parent(@current_folder).ordered_by_name
+    @folders = Folder.by_user(current_user).with_parent(@current_folder).ordered_by_name
     @bookmarks = @current_folder.try(:bookmarks).try(:ordered_by_title) || []
 
     respond_to do |format|
@@ -24,9 +24,9 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     parent = params[:parent]
-    @current_folder = Folder.find(parent) unless parent.nil?
+    @current_folder = Folder.by_user(current_user).find(parent) unless parent.nil?
 
-    @folders = Folder.with_parent(@current_folder)
+    @folders = Folder.by_user(current_user).with_parent(@current_folder)
     @bookmarks = @current_folder.try(:bookmarks) || []
 
     respond_to do |format|

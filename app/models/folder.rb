@@ -20,15 +20,15 @@ class Folder < ActiveRecord::Base
 
 
   def self.create_hierarchy(folders, parent = nil, options = {})
-    remaining_folders = folders.dup
+    remaining_folders = folders.nil? ? [] : folders.dup
     first = remaining_folders.shift
-    user = options[:user]
+
+    obj = Folder.new
 
     unless first.nil?
-      obj = self.with_parent(parent).where(name: first, user_id: user.try(:id)).first_or_initialize
+      obj = scoped.with_parent(parent).where(name: first).first_or_initialize
       obj.save if obj.new_record? && options[:force_create]
-#binding.pry
-      return create_hierarchy(remaining_folders, obj, options) unless remaining_folders.empty?
+      return create_hierarchy(remaining_folders, obj, options) unless remaining_folders.blank? # nil || empty
     end
 
     obj

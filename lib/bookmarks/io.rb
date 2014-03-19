@@ -7,7 +7,7 @@ module Bookmarks
 
       #ActiveRecord::Base.transaction do
         bookmarks.each_with_index do |b, idx|
-          last = Folder.create_hierarchy!(b.folders, nil, user: user)
+          last = Folder.by_user(user).create_hierarchy!(b.folders)
           puts "Importing #{idx + 1}/#{bookmarks.count}"
           Bookmark.create(
             title: b.title,
