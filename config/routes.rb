@@ -1,6 +1,4 @@
 Bookmarks::Application.routes.draw do
-  resources :users
-
   root 'folders#browse'
 
   get '/auth/:provider/callback', to: 'sessions#create'
@@ -8,12 +6,14 @@ Bookmarks::Application.routes.draw do
   match 'login', to: 'sessions#new', as: 'login', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-  resources :bookmarks do
+  resources :users do
     collection do
       get :admin
-      post :upload
+      post :upload_bookmarks
     end
+  end
 
+  resources :bookmarks do
     member do
       get :update_title
       get :goto

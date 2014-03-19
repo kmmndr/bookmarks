@@ -2,6 +2,21 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate
 
+  def admin
+    @bookmarks_count = Bookmark.by_user(current_user).count
+  end
+
+  def upload_bookmarks
+    files = params[:files] || []
+
+    files.each do |file|
+      logger.debug file
+      Bookmarks::IO.import(file.tempfile, current_user.try(:id))
+    end
+    render layout: false, content_type: "text/html"
+  end
+
+
   # GET /users
   # GET /users.json
   def index
