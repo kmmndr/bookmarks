@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     render layout: false, content_type: "text/html"
   end
 
+  def empty_bookmarks
+    Folder.by_user(current_user).delete_all
+    Bookmark.by_user(current_user).delete_all
+    redirect_to admin_users_path
+  end
 
   # GET /users
   # GET /users.json

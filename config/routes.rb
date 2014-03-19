@@ -10,6 +10,7 @@ Bookmarks::Application.routes.draw do
     collection do
       get :admin
       post :upload_bookmarks
+      delete :empty_bookmarks
     end
   end
 
