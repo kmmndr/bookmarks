@@ -16,6 +16,7 @@ class FoldersController < ApplicationController
     @bookmarks = @current_folder.try(:bookmarks).try(:ordered_by_title) || []
 
     respond_to do |format|
+      format.js
       format.html { render action: 'index' }
     end
   end

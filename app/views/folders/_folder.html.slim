@@ -1,1 +1,1 @@
-a href="#{browse_folders_path(folder.full_path)}" #{folder.name}
+= link_to folder.name, browse_folders_path(folder.full_path), remote: true
