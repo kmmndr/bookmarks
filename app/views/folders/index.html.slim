@@ -1,9 +1,1 @@
-ul
-  - @folders.each do |folder|
-    li
-      = render(folder)
-ul
-  - @bookmarks.each do |bookmark|
-    li
-      = render(bookmark)
-
+= render(partial: "folder_with_subfolders", locals: {folder: @current_folder})

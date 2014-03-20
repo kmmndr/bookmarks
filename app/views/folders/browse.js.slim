@@ -1,2 +1,2 @@
 | 
-  alert('here');
+  $('##{dom_id(@current_folder)}').replaceWith('#{ escape_javascript(render(partial: "folder_with_subfolders", locals: {folder: @current_folder})) }')
