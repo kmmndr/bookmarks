@@ -23,7 +23,7 @@ class Folder < ActiveRecord::Base
     remaining_folders = folders.nil? ? [] : folders.dup
     first = remaining_folders.shift
 
-    obj = Folder.new
+    obj = Folder.with_parent(nil).first || Folder.new
 
     unless first.nil?
       obj = scoped.with_parent(parent).where(name: first).first_or_initialize
