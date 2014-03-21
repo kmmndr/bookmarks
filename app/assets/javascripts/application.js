@@ -28,7 +28,7 @@ $(document).ready(function () {
   $('#basic').fileupload({
     done: function(e, data) {
       console.log("Done", data.result);
-      return $("body").append(data.result);
+      //return $("body").append(data.result);
     }
   });
 });

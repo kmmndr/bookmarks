@@ -8,6 +8,6 @@ h2 Empty
 = link_to 'empty', empty_bookmarks_users_path, method: :delete
 
 h2 Upload
-= form_tag upload_bookmarks_users_path, id: "basic"
+= form_tag upload_bookmarks_users_path, id: "basic", remote: true
   div
     = file_field_tag "files[]", multiple: true

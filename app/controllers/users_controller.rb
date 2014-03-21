@@ -13,7 +13,11 @@ class UsersController < ApplicationController
       logger.debug file
       Bookmarks::IO.import(file.tempfile, current_user.try(:id))
     end
-    render layout: false, content_type: "text/html"
+
+    respond_to do |format|
+      #format.html { render layout: false, content_type: "text/html" }
+      format.js
+    end
   end
 
   def empty_bookmarks
