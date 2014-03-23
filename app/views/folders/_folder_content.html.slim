@@ -1,0 +1,11 @@
+- unless folder.sub_folders.blank?
+  ul
+    - folder.sub_folders.ordered_by_name.each do |sub_folder|
+      li class='folder'
+        = render(sub_folder)
+
+- unless folder.bookmarks.blank?
+  ul
+    - folder.bookmarks.ordered_by_title.each do |bookmark|
+      li class='bookmark'
+        = render(bookmark)
