@@ -1,2 +1,12 @@
 | 
-  $('##{dom_id(@current_folder)}').replaceWith('#{ escape_javascript(render(partial: "folder_with_subfolders", locals: {folder: @current_folder})) }')
+  var current_folder = $('##{dom_id(@current_folder)}');
+  if (current_folder.next().size() == 0)
+  {
+    // load content
+    current_folder.replaceWith('#{ escape_javascript(render(partial: "folder_with_subfolders", locals: {folder: @current_folder})) }')
+  }
+  else
+  {
+    // content has allready been loaded, toggling
+    current_folder.next().toggle();
+  }
