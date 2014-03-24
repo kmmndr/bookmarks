@@ -1,4 +1,8 @@
 class Bookmark < ActiveRecord::Base
+  include Authority::Abilities
+
+  self.authorizer_name = 'BookmarkAuthorizer'
+
   belongs_to :folder
   belongs_to :user
 

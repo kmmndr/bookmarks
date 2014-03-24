@@ -1,4 +1,8 @@
 class Folder < ActiveRecord::Base
+  include Authority::Abilities
+
+  self.authorizer_name = 'BookmarkAuthorizer'
+
   belongs_to :parent_folder, :class_name => "Folder"
   belongs_to :user
   has_many :sub_folders, :class_name => 'Folder', :inverse_of => :parent_folder, :foreign_key => 'parent_folder_id'

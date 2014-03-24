@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Authority::UserAbilities
+  include Authority::Abilities
+
   has_many :folders
   has_many :bookmarks
 

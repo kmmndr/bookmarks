@@ -6,6 +6,8 @@ class FoldersController < ApplicationController
   def browse
     path = params[:path]
     @current_folder = Folder.by_user(current_user).create_hierarchy(path.try(:split,File::SEPARATOR))
+    authorize_action_for @current_folder
+
     arbo = []
     @current_folder.ancestors.each do |level|
       arbo << level
@@ -20,15 +22,20 @@ class FoldersController < ApplicationController
       format.html { render action: 'index' }
     end
   end
+  authority_actions :browse => 'read'
+
 
   # GET /folders
   # GET /folders.json
   def index
     parent = params[:parent]
-    @current_folder = Folder.by_user(current_user).find(parent) unless parent.nil?
+    if parent.nil?
+      @current_folder = Folder.by_user(current_user).with_parent(nil).first
+    else
+      @current_folder = Folder.by_user(current_user).find(parent)
+    end
 
-    @folders = Folder.by_user(current_user).with_parent(@current_folder)
-    @bookmarks = @current_folder.try(:bookmarks) || []
+    authorize_action_for @current_folder unless @current_folder.nil?
 
     respond_to do |format|
       format.html
@@ -93,6 +100,7 @@ class FoldersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_folder
       @folder = Folder.find(params[:id])
+      authorize_action_for @folder
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

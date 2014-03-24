@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def admin
     @bookmarks_count = Bookmark.by_user(current_user).count
   end
+  authority_actions :admin => 'show'
 
   def upload_bookmarks
     files = params[:files] || []
@@ -90,6 +91,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      authorize_action_for @user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

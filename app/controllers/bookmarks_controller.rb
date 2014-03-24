@@ -2,6 +2,8 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :update_title, :goto]
   before_filter :authenticate
 
+  authorize_actions_for Bookmark, only: [:index]
+
   # GET /bookmarks/1/update_title
   def update_title
     @bookmark.update_title
@@ -11,6 +13,7 @@ class BookmarksController < ApplicationController
       format.html { redirect_to @bookmark }
     end
   end
+  authority_actions :update_title => 'update'
 
   # GET /bookmarks/1/goto
   def goto
@@ -20,6 +23,7 @@ class BookmarksController < ApplicationController
       format.html { redirect_to @bookmark.href }
     end
   end
+  authority_actions :goto => 'read'
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -85,6 +89,7 @@ class BookmarksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bookmark
       @bookmark = Bookmark.find(params[:id])
+      authorize_action_for @bookmark
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
