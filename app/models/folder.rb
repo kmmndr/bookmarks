@@ -30,7 +30,7 @@ class Folder < ActiveRecord::Base
     obj = Folder.with_parent(nil).first || Folder.new
 
     unless first.nil?
-      obj = scoped.with_parent(parent).where(name: first).first_or_initialize
+      obj = all.with_parent(parent).where(name: first).first_or_initialize
       obj.save if obj.new_record? && options[:force_create]
       return create_hierarchy(remaining_folders, obj, options) unless remaining_folders.blank? # nil || empty
     end
