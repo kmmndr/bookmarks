@@ -21,6 +21,16 @@ Things you may want to cover:
 
 * Deployment instructions
 
+The file .env must define the following values :
+
+    SECRET_KEY_BASE=
+    FACEBOOK_KEY=
+    FACEBOOK_SECRET=
+    GITHUB_KEY=
+    GITHUB_SECRET=
+    GPLUS_KEY=
+    GPLUS_SECRET=
+
 * ...
 
 

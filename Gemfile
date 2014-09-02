@@ -65,6 +65,7 @@ gem 'ramenu'
 # database id reset
 gem 'activerecord-reset-pk-sequence'
 
+gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
